@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kelas Raudhah v0.20.0</title>
+<title>Kelas Raudhah v0.20.1</title>
 <style>
 :root{--bg:#f4f1ea;--fg:#1f2933;--card:#ffffff;--ac:#2f6f4f;--acT:#ffffff;--mut:#5f6b76;--emas:#7a5600}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1f23;--fg:#eef1f4;--card:#262c32;--ac:#6fcf97;--acT:#0b2416;--mut:#a3adb8;--emas:#f0c35a}}
@@ -176,7 +176,7 @@ body.konfBuka #joy,body.konfBuka #bBer,body.konfBuka .bp,body.konfBuka #bVRx{vis
 
 <script>
 (function(){
-var VERSI='v0.20.0', bagian='awal', srv='', mode='';
+var VERSI='v0.20.1', bagian='awal', srv='', mode='';
 var API_URL='https://script.google.com/macros/s/AKfycbzYQXVekj9FOdf_s5CviusYl5aW32zYCCwtiaEOnnBMKD9-hHZQ6o2FIMQovi0jJjk/exec';
 var GOOGLE_CLIENT_ID='503152505847-niasbva2uksvum09lsm85j8pursok0b8.apps.googleusercontent.com';
 var sentuh=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
@@ -1194,9 +1194,9 @@ function bukaAdmin(tab){
 function isiAdmKompos(pn){gs('ambilKompos').then(function(j){var d=el('admK');if(!d||pn!==PNL)return;if(!j||!j.ok){d.innerHTML=galatSoal(j);return;}
  var h='<h3 id="admKJ">Kompos MBG (takaran EM4)</h3>';
  j.atur.forEach(function(a,i){h+='<div class="lb" id="pkL'+i+'">'+esc(a.kunci)+'</div><input class="pk" type="number" inputmode="numeric" data-k="'+esc(a.kunci)+'" min="'+esc(a.min)+'" max="'+esc(a.maks)+'" value="'+esc(a.nilai)+'" aria-labelledby="pkL'+i+' pkK'+i+'"><small id="pkK'+i+'">'+esc(a.ket)+' ('+esc(a.min)+'–'+esc(a.maks)+')</small>';});
- h+='<h4>Berat standar kulit buah (gram per siswa)</h4>';
- j.jenis.forEach(function(x,i){h+='<div class="pkR"><span id="pjL'+i+'">'+esc(x.nama)+'</span><input class="pkJ" type="number" inputmode="numeric" min="1" max="'+esc(j.maksG)+'" data-k="'+esc(x.kode)+'" value="'+esc(x.berat_g)+'" aria-labelledby="pjL'+i+'"><label><input type="checkbox" class="pkA" data-k="'+esc(x.kode)+'"'+(x.aktif?' checked':'')+'> aktif</label></div>';});
- h+='<div class="baris"><button class="p" data-act="simpanKompos">Simpan pengaturan kompos</button></div><p class="hs" id="pkSt" role="status"></p><small>Jenis kulit baru ditambahkan di tab JenisKompos pada Sheets. Laporan yang sudah masuk tidak berubah beratnya.</small>';
+ h+='<h4>Jenis sampah MBG (berat standar gram per siswa, atau ditimbang)</h4>';
+ j.jenis.forEach(function(x,i){h+='<div class="pkR"><span id="pjL'+i+'">'+esc(x.nama)+'</span>'+(x.cara==='timbang'?'<small>ditimbang (kg)</small>':'<input class="pkJ" type="number" inputmode="numeric" min="1" max="'+esc(j.maksG)+'" data-k="'+esc(x.kode)+'" value="'+esc(x.berat_g)+'" aria-labelledby="pjL'+i+'">')+'<label><input type="checkbox" class="pkA" data-k="'+esc(x.kode)+'"'+(x.aktif?' checked':'')+' aria-label="'+esc(x.nama)+' aktif"> aktif</label></div>';});
+ h+='<div class="baris"><button class="p" data-act="simpanKompos">Simpan pengaturan kompos</button></div><p class="hs" id="pkSt" role="status"></p><small>Jenis baru ditambahkan di tab JenisKompos pada Sheets (kolom cara: siswa atau timbang). Laporan yang sudah masuk tidak berubah beratnya.</small>';
  d.innerHTML=h;});}
 function aksiAdmin(a,b){
  var hasil=function(j,ok){tampilHasil(j&&j.ok?ok:galatSoal(j));};
@@ -1214,7 +1214,7 @@ function aksiAdmin(a,b){
  if(a==='swPindah'&&id){var s2=kartu.querySelector('.swK');if(!s2)return true;if(!window.confirm('Pindahkan siswa ini ke '+s2.options[s2.selectedIndex].text+'? Poin dan bintangnya ikut pindah.'))return true;b.disabled=true;gs('aturSiswa',{id:id,pindahKe:s2.value}).then(function(j){b.disabled=false;if(j&&j.ok)bukaKelasDetail(KLS.kelas_id);else hasil(j);});return true;}
  if(a==='grAktif'){var g=b.closest('.gr'),on2=b.getAttribute('data-v')==='1';if(!g)return true;if(!on2&&!window.confirm('Nonaktifkan guru ini? Ia langsung keluar. Kelas dan nilai siswanya tetap tersimpan.'))return true;b.disabled=true;gs('aturGuru',{id:g.getAttribute('data-id'),aktif:on2}).then(function(j){b.disabled=false;if(j&&j.ok)bukaAdmin('guru');else hasil(j);});return true;}
  if(a==='simpanKompos'){var at={},jn=[],st=el('pkSt');Array.prototype.forEach.call(document.querySelectorAll('#kb .pk'),function(x){at[x.getAttribute('data-k')]=x.value;});
-  Array.prototype.forEach.call(document.querySelectorAll('#kb .pkJ'),function(x){var c=document.querySelector('#kb .pkA[data-k="'+x.getAttribute('data-k')+'"]');jn.push({kode:x.getAttribute('data-k'),berat_g:x.value,aktif:!c||c.checked});});
+  Array.prototype.forEach.call(document.querySelectorAll('#kb .pkA'),function(c){var x=document.querySelector('#kb .pkJ[data-k="'+c.getAttribute('data-k')+'"]');jn.push({kode:c.getAttribute('data-k'),berat_g:x?x.value:'',aktif:c.checked});});
   b.disabled=true;st.className='hs';st.textContent='Menyimpan…';gs('simpanKompos',{atur:at,jenis:jn}).then(function(j){b.disabled=false;if(j&&j.ok){st.className='hs ok';st.textContent='Pengaturan kompos tersimpan.';}else{st.className='hs no';st.innerHTML=galatSoal(j);}});return true;}
  if(a==='grAdi'){var g3=b.closest('.gr');if(!g3)return true;b.disabled=true;gs('aturGuruAdi',{id:g3.getAttribute('data-id'),adi:b.getAttribute('data-v')==='1'}).then(function(j){b.disabled=false;if(j&&j.ok)bukaAdmin('guru');else hasil(j);});return true;}
  if(a==='simpanAtur'){var nilai={};Array.prototype.forEach.call(document.querySelectorAll('#kb .pa'),function(x){nilai[x.getAttribute('data-k')]=x.value;});b.disabled=true;gs('simpanPengaturan',{nilai:nilai}).then(function(j){b.disabled=false;if(j&&j.ok){tampilHasil('Pengaturan tersimpan.');segarPapan();}else tampilHasil(galatSoal(j));});return true;}
@@ -1232,7 +1232,7 @@ function jenisLp(k){var r=null;if(ADI&&ADI.jenisLapor)ADI.jenisLapor.forEach(fun
 /* v0.19.0: kompos MBG = berat standar kulit buah x jumlah siswa; takaran larutan EM4 dari pengaturan pemilik. */
 /* v0.20.0: foto kulit buah → dikecilkan ≤ 512 px JPEG di HP → kenaliKulit (Cloudflare). Hasil AI memilihkan jenis; siswa bisa mengoreksi. */
 function htmlFotoAI(){var f=LP.foto;if(!f)return '';if(f.muat)return (f.thumb?'<img alt="" src="'+f.thumb+'">':'')+'<span>Mengenali foto…</span>';if(f.galat)return '<span class="err">'+esc(f.galat)+'</span>';
- return (f.thumb?'<img alt="Foto kulit buah yang dikirim" src="'+f.thumb+'">':'')+'<span>'+(f.kode==='LAIN'?'AI belum yakin ini kulit buah yang terdaftar. <b>Pilih jenisnya sendiri</b> di bawah.':'AI mengenali: <b>'+esc(f.nama)+'</b> (yakin '+esc(f.yakin)+' %). Berat standar '+esc(fPoin(f.berat_g))+' g per siswa. Ini perkiraan; ketuk jenis lain bila salah.')+(f.alasan?'<br><small>'+esc(f.alasan)+'</small>':'')+'</span>';}
+ return (f.thumb?'<img alt="Foto kulit buah yang dikirim" src="'+f.thumb+'">':'')+'<span>'+(f.kode==='LAIN'?'AI belum yakin cocok dengan daftar'+(f.benda?' (terlihat: '+esc(f.benda)+')':'')+'. <b>Pilih jenisnya sendiri</b> di bawah.':(f.benda?'AI menduga ini <b>'+esc(f.benda)+'</b> → dipilih: <b>'+esc(f.nama)+'</b>':'AI menduga: <b>'+esc(f.nama)+'</b>')+(f.berat_g?' ('+esc(fPoin(f.berat_g))+' g per siswa)':' (ditimbang)')+'. Hanya dugaan dan bisa salah; ketuk jenis lain bila keliru.')+'</span>';}
 function segarFotoAI(){var d=el('lpAI');if(d)d.innerHTML=htmlFotoAI();}
 function kecilkanFoto(file,cb){var url;try{url=URL.createObjectURL(file);}catch(e){cb(null);return;}var im=new Image();
  im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight,sk=Math.min(1,512/Math.max(w,h)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*sk));c.height=Math.max(1,Math.round(h*sk));
@@ -1244,9 +1244,10 @@ function pakaiFoto(file){if(!file||!ADI)return;LP.foto={muat:true};segarFotoAI()
  kecilkanFoto(file,function(d,thumb){if(!d){LP.foto={galat:'Foto tidak bisa dibaca. Coba ambil foto lagi.'};segarFotoAI();if(el('lpFotoB'))el('lpFotoB').disabled=false;return;}
   LP.foto={muat:true,thumb:thumb};segarFotoAI();
   gs('kenaliKulit',{gambar:d}).then(function(j){
-   if(!j||!j.ok){LP.foto={galat:(j&&j.error)||'Gagal mengenali foto. Pilih jenis kulit sendiri, ya.',thumb:thumb};}
-   else{LP.foto={id:j.foto_id,kode:j.kode,nama:j.nama,berat_g:j.berat_g,yakin:j.yakin,alasan:j.alasan,thumb:thumb};if(ADI.kompos&&ADI.kompos.foto)ADI.kompos.foto.sisa=j.sisa;if(j.kode!=='LAIN'&&kulitLp(j.kode))LP.kulit=j.kode;}
-   var n1=el('lpN')?el('lpN').value:'',bx=document.querySelector('#kb .lp');if(bx){var t2=document.createElement('div');t2.innerHTML=htmlLapor(ADI);bx.parentNode.replaceChild(t2.firstChild,bx);}if(el('lpN'))el('lpN').value=n1;segarHit();
+   if(!j||!j.ok){LP.foto={galat:(j&&j.error)||'Gagal mengenali foto. Pilih jenisnya sendiri, ya.',thumb:thumb};}
+   var caraA=(kulitLp(LP.kulit)||{}).cara;
+   if(j&&j.ok){LP.foto={id:j.foto_id,kode:j.kode,nama:j.nama,berat_g:j.berat_g,benda:j.benda||'',alasan:j.alasan,thumb:thumb};if(ADI.kompos&&ADI.kompos.foto)ADI.kompos.foto.sisa=j.sisa;if(j.kode!=='LAIN'&&kulitLp(j.kode))LP.kulit=j.kode;}
+   var n1=el('lpN')&&(kulitLp(LP.kulit)||{}).cara===caraA?el('lpN').value:'',bx=document.querySelector('#kb .lp');if(bx){var t2=document.createElement('div');t2.innerHTML=htmlLapor(ADI);bx.parentNode.replaceChild(t2.firstChild,bx);}if(el('lpN'))el('lpN').value=n1;segarHit();
   });});}
 document.addEventListener('change',function(e){if(e.target&&e.target.id==='lpFoto'){var f=e.target.files&&e.target.files[0];e.target.value='';pakaiFoto(f);}});
 function kulitLp(k){var r=null;if(ADI&&ADI.kompos)ADI.kompos.jenis.forEach(function(j){if(j.kode===k)r=j;});return r;}
@@ -1254,6 +1255,10 @@ function fDes(x,d){try{return Number(x).toLocaleString('id-ID',{maximumFractionD
 function hitTakaran(g){var a=ADI.kompos.atur,air=g/1000/a.kompos_kg_per_takaran*a.kompos_larutan_ml,l=air/1000;return {air:air,em4:l*a.kompos_em4_ml_per_l,mol:l*a.kompos_molase_ml_per_l};}
 function teksTakaran(g){var t=hitTakaran(g);return 'larutan '+fDes(t.air/1000,2)+' L air + '+fDes(t.em4)+' ml EM4 + '+fDes(t.mol)+' ml molase';}
 function segarHit(){var h=el('lpHit'),i=el('lpN');if(!h||!i||!ADI||!ADI.kompos)return;var k=kulitLp(LP.kulit),n=i.value.trim();
+ if(k&&k.cara==='timbang'){
+  if(!/^\d{1,2}([.,]\d{1,2})?$/.test(n)||!(parseFloat(n.replace(',','.'))>0)){h.innerHTML='Timbang sisanya, lalu tulis beratnya dalam kg untuk menghitung larutan EM4.';return;}
+  var gT=Math.round(parseFloat(n.replace(',','.'))*1000),pT=Math.round(gT*(Number(ADI.kompos.poin_per_kg)||0)/1000);
+  h.innerHTML='Berat ≈ <b>'+esc(fKg(gT))+' kg</b> ('+esc(k.nama)+', ditimbang) · ±'+esc(fPoin(pT))+' poin rombel<br>Kebutuhan: '+esc(teksTakaran(gT))+'.';return;}
  if(!k||!/^\d{1,2}$/.test(n)||+n<1||+n>ADI.kompos.siswaMaks){h.innerHTML='Isi jumlah siswa (1–'+esc(ADI.kompos.siswaMaks)+') untuk menghitung berat dan larutan EM4.';return;}
  var g=k.berat_g*(+n),p=Math.round(g*(Number(ADI.kompos.poin_per_kg)||0)/1000);
  h.innerHTML='Berat total ≈ <b>'+esc(fKg(g))+' kg</b> ('+esc(fPoin(k.berat_g))+' g × '+esc(n)+' siswa) · ±'+esc(fPoin(p))+' poin rombel<br>Kebutuhan: '+esc(teksTakaran(g))+'.';}
@@ -1267,15 +1272,15 @@ function htmlLapor(j){
  if(!jenisLp(LP.jenis))LP.jenis=jl[0].kode;
  var js=jenisLp(LP.jenis),buah=js.satuan==='buah',kom=js.satuan==='kompos';
  var h='<div class="lp" role="group" aria-labelledby="lpJ"><b id="lpJ">♻ Lapor sampah</b><small>Rombel <b>'+esc(j.kelas.nama_kelas)+'</b> · '+(j.staf?'laporan guru langsung disetujui':'menunggu persetujuan kader atau guru, lalu poinnya masuk ke rombel')+'</small>';
- h+='<div class="lpJn" role="radiogroup" aria-label="Jenis sampah yang dilaporkan">'+jl.map(function(x){var c=x.kode===LP.jenis;return '<button type="button" role="radio" data-act="lpJenis" data-k="'+esc(x.kode)+'" aria-checked="'+(c?'true':'false')+'" tabindex="'+(c?'0':'-1')+'">'+esc(x.nama)+'<small>'+(x.satuan==='buah'?'dihitung per buah':(x.satuan==='kompos'?'kulit buah × siswa':'ditimbang dalam kg'))+' · '+esc(fPoin(x.poin_per_satuan))+' poin/'+(x.satuan==='buah'?'buah':'kg')+'</small></button>';}).join('')+'</div>';
+ h+='<div class="lpJn" role="radiogroup" aria-label="Jenis sampah yang dilaporkan">'+jl.map(function(x){var c=x.kode===LP.jenis;return '<button type="button" role="radio" data-act="lpJenis" data-k="'+esc(x.kode)+'" aria-checked="'+(c?'true':'false')+'" tabindex="'+(c?'0':'-1')+'">'+esc(x.nama)+'<small>'+(x.satuan==='buah'?'dihitung per buah':(x.satuan==='kompos'?'sisa makanan & kulit buah':'ditimbang dalam kg'))+' · '+esc(fPoin(x.poin_per_satuan))+' poin/'+(x.satuan==='buah'?'buah':'kg')+'</small></button>';}).join('')+'</div>';
  if(kom){
   if(!kulitLp(LP.kulit))LP.kulit=j.kompos.jenis[0].kode;
   var fo=j.kompos.foto;
-  if(fo&&fo.aktif)h+='<div class="lpF"><input type="file" id="lpFoto" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true"><button type="button" class="s2" data-act="lpFoto" id="lpFotoB">📷 Foto kulit buah, dikenali AI'+(fo.sisa>=0?' · sisa '+esc(fo.sisa)+' hari ini':'')+'</button><small>Potret kulit buahnya saja, tanpa wajah. Foto dikecilkan di HP dan <b>tidak disimpan</b>; hanya hasil pengenalannya. Dikenali Llama 3.2 (Meta) lewat Cloudflare Workers AI. Hasil AI hanya perkiraan; guru tetap memeriksa.</small><div class="lpAI" id="lpAI" aria-live="polite">'+htmlFotoAI()+'</div></div>';
-  h+='<div class="lb" id="lpKL">Jenis kulit buah</div><div class="lpJn lpK" role="radiogroup" aria-labelledby="lpKL">'+j.kompos.jenis.map(function(x){var c=x.kode===LP.kulit;return '<button type="button" role="radio" data-act="lpKulit" data-k="'+esc(x.kode)+'" aria-checked="'+(c?'true':'false')+'" tabindex="'+(c?'0':'-1')+'">'+esc(x.nama)+'<small>'+esc(fPoin(x.berat_g))+' g per siswa</small></button>';}).join('')+'</div>';
+  if(fo&&fo.aktif)h+='<div class="lpF"><input type="file" id="lpFoto" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true"><button type="button" class="s2" data-act="lpFoto" id="lpFotoB">📷 Foto sampah MBG, dikenali AI'+(fo.sisa>=0?' · sisa '+esc(fo.sisa)+' hari ini':'')+'</button><small>Potret sampahnya saja, tanpa wajah. Foto dikecilkan di HP dan <b>tidak disimpan</b>; hanya hasil pengenalannya. Dikenali Llama 3.2 (Meta) lewat Cloudflare Workers AI. Hasil AI hanya dugaan dan bisa salah; periksa lagi, guru tetap memeriksa.</small><div class="lpAI" id="lpAI" aria-live="polite">'+htmlFotoAI()+'</div></div>';
+  h+='<div class="lb" id="lpKL">Jenis sampah MBG</div><div class="lpJn lpK" role="radiogroup" aria-labelledby="lpKL">'+j.kompos.jenis.map(function(x){var c=x.kode===LP.kulit;return '<button type="button" role="radio" data-act="lpKulit" data-k="'+esc(x.kode)+'" aria-checked="'+(c?'true':'false')+'" tabindex="'+(c?'0':'-1')+'">'+esc(x.nama)+'<small>'+(x.cara==='timbang'?'ditimbang (kg)':esc(fPoin(x.berat_g))+' g per siswa')+'</small></button>';}).join('')+'</div>';
  }
- var buahN=buah||kom,mx=kom?j.kompos.siswaMaks:(j.buahMaks||500);
- h+='<div class="lb" id="lpNL">'+(kom?'Jumlah siswa yang membuang (1–'+esc(mx)+')':(buah?'Jumlah botol (1–'+esc(mx)+')':'Berat (kg), mis. 1,5'))+'</div>';
+ var kTb=kom&&kulitLp(LP.kulit)&&kulitLp(LP.kulit).cara==='timbang',buahN=(buah||kom)&&!kTb,mx=kom?j.kompos.siswaMaks:(j.buahMaks||500);
+ h+='<div class="lb" id="lpNL">'+(kTb?'Berat (kg), mis. 1,5':kom?'Jumlah siswa yang membuang (1–'+esc(mx)+')':(buah?'Jumlah botol (1–'+esc(mx)+')':'Berat (kg), mis. 1,5'))+'</div>';
  h+='<div class="lpN">'+(buahN?'<button type="button" class="s2" data-act="lpKurang" aria-label="Kurangi satu">−</button>':'')+'<input id="lpN" autocomplete="off" aria-labelledby="lpNL" '+(buahN?'inputmode="numeric" maxlength="3" placeholder="ketik jumlah, mis. '+(kom?'30':'10')+'"':'inputmode="decimal" maxlength="6" placeholder="ketik berat, mis. 1,5"')+'>'+(buahN?'<button type="button" class="s2" data-act="lpTambah" aria-label="Tambah satu">+</button>':'')+'</div>';
  if(kom)h+='<div class="lpHit" id="lpHit" aria-live="polite"></div>';
  if(j.staf)h+='<div class="lb" id="lpTL">Tanggal (hari ini sampai 30 hari ke belakang)</div><input id="lpT" type="date" aria-labelledby="lpTL" value="'+esc(j.hari)+'" max="'+esc(j.hari)+'" min="'+esc(geserHari(j.hari,-30))+'">';
@@ -1284,7 +1289,7 @@ function htmlLapor(j){
  return h;
 }
 function htmlLpBaris(x,j,tinjau){
- var h='<div class="lpR" data-id="'+esc(x.id)+'"><span><span class="bdg '+esc(ST_LP[x.status]||'')+'">'+esc(x.status)+'</span> '+(tinjau?'<b>'+esc(x.kelas)+'</b> · ':'')+(x.kulit?'Kompos MBG · '+esc(x.kulit)+', '+esc(x.siswa)+' siswa':esc(x.nama_jenis))+' · <b>'+esc(fJml(x))+'</b>'+(x.status==='disetujui'||tinjau?' · '+(x.status==='disetujui'?'':'±')+esc(fPoin(x.poin))+' poin':'')+'<br><small>'+esc(x.tanggal)+(tinjau?' · oleh '+esc(x.oleh):'')+(x.catatan?' · '+esc(x.catatan):'')+(x.alasan?' · alasan: '+esc(x.alasan):'')+'</small>'+(x.ai?'<br><small class="aiT">AI: '+esc(x.ai.nama)+' '+esc(x.ai.yakin)+' %'+(x.ai.dikoreksi?' · <b>dikoreksi siswa</b>':'')+'</small>':'')+'</span>';
+ var h='<div class="lpR" data-id="'+esc(x.id)+'"><span><span class="bdg '+esc(ST_LP[x.status]||'')+'">'+esc(x.status)+'</span> '+(tinjau?'<b>'+esc(x.kelas)+'</b> · ':'')+(x.kulit?'Kompos MBG · '+esc(x.kulit)+(x.siswa?', '+esc(x.siswa)+' siswa':''):esc(x.nama_jenis))+' · <b>'+esc(fJml(x))+'</b>'+(x.status==='disetujui'||tinjau?' · '+(x.status==='disetujui'?'':'±')+esc(fPoin(x.poin))+' poin':'')+'<br><small>'+esc(x.tanggal)+(tinjau?' · oleh '+esc(x.oleh):'')+(x.catatan?' · '+esc(x.catatan):'')+(x.alasan?' · alasan: '+esc(x.alasan):'')+'</small>'+(x.ai?'<br><small class="aiT">AI: '+esc(x.ai.nama)+(x.ai.dikoreksi?' · <b>dikoreksi siswa</b>':'')+'</small>':'')+'</span>';
  if(tinjau){
   if(x.milik&&!j.staf)h+='<p><small>Laporanmu sendiri: ditinjau kader lain atau guru.</small></p>';
   else h+='<div class="baris"><button class="p" data-act="lpSetuju" aria-label="Setujui '+esc(x.nama_jenis)+' '+esc(fJml(x))+' dari '+esc(x.oleh)+'">Setujui</button><button class="s2" data-act="lpTolak" aria-expanded="false" aria-label="Tolak '+esc(x.nama_jenis)+' '+esc(fJml(x))+' dari '+esc(x.oleh)+'">Tolak</button></div>'
@@ -1317,7 +1322,7 @@ function bukaAdi(kid,fokus){
   if(!j.papan.length)h+='<p><small>Belum ada poin rombel bulan ini.</small></p>';
   else h+='<div class="adP">'+j.papan.map(function(x){var me=j.kelas&&x.kelas_id===j.kelas.kelas_id;return '<div class="pb-row'+(me?' me':'')+'"><span class="pb-rk">'+esc(x.r)+'</span><span class="pb-nm">'+esc(x.nama_kelas)+(me?' (rombelmu)':'')+'</span><span class="pb-pt">'+esc(fPoin(x.poin))+' poin<small>'+esc(fKg(x.gram))+' kg'+(x.buah?' · '+esc(fPoin(x.buah))+' botol':'')+'</small></span></div>';}).join('')+'</div>';
   if(j.kompos&&j.kompos.aktif){var kb2=j.kompos.bulan,a2=j.kompos.atur;
-   h+='<h3 id="kmpJ">Kompos MBG bulan ini</h3><div class="kmp"><p>Sekolah: <b>'+esc(fKg(kb2.gram_sekolah))+' kg</b> kulit buah ('+esc(kb2.laporan)+' laporan disetujui) → '+esc(teksTakaran(kb2.gram_sekolah))+'.</p>'+(j.kelas?'<p>Rombel '+esc(j.kelas.nama_kelas)+': <b>'+esc(fKg(kb2.gram_rombel))+' kg</b> → '+esc(teksTakaran(kb2.gram_rombel))+'.</p>':'')+'<small>Takaran: '+esc(fDes(a2.kompos_larutan_ml/1000,2))+' L larutan per '+esc(a2.kompos_kg_per_takaran)+' kg; tiap liter air + '+esc(a2.kompos_em4_ml_per_l)+' ml EM4 + '+esc(a2.kompos_molase_ml_per_l)+' ml molase (diatur pemilik).</small></div>';
+   h+='<h3 id="kmpJ">Kompos MBG bulan ini</h3><div class="kmp"><p>Sekolah: <b>'+esc(fKg(kb2.gram_sekolah))+' kg</b> sampah MBG ('+esc(kb2.laporan)+' laporan disetujui) → '+esc(teksTakaran(kb2.gram_sekolah))+'.</p>'+(j.kelas?'<p>Rombel '+esc(j.kelas.nama_kelas)+': <b>'+esc(fKg(kb2.gram_rombel))+' kg</b> → '+esc(teksTakaran(kb2.gram_rombel))+'.</p>':'')+'<small>Takaran: '+esc(fDes(a2.kompos_larutan_ml/1000,2))+' L larutan per '+esc(a2.kompos_kg_per_takaran)+' kg; tiap liter air + '+esc(a2.kompos_em4_ml_per_l)+' ml EM4 + '+esc(a2.kompos_molase_ml_per_l)+' ml molase (diatur pemilik).</small></div>';
    if(j.staf)h+='<div class="baris"><button class="s2" data-act="adRekapK">Unduh rekap kompos bulan ini (CSV)</button></div>';
    if(SAYA.peran==='pemilik'&&!SAYA.juri)h+='<div class="baris"><button class="s2" data-act="adAturK">Atur takaran EM4 &amp; berat standar</button></div>';
   }
@@ -1361,14 +1366,15 @@ function aksiAdi(a,b){
  if(!ADI)return false;
  var kid=ADI.kelas?ADI.kelas.kelas_id:'',kidB=ADI.staf?kid:'';
  if(a==='lpJenis'){var n0=el('lpN')?el('lpN').value:'';LP.jenis=b.getAttribute('data-k');var box=b.closest('.lp');if(box){var t=document.createElement('div');t.innerHTML=htmlLapor(ADI);box.parentNode.replaceChild(t.firstChild,box);}segarHit();var bj=document.querySelector('#kb .lpJn [aria-checked=true]');if(bj)bj.focus();return true;}
- if(a==='lpKulit'){LP.kulit=b.getAttribute('data-k');var n1=el('lpN')?el('lpN').value:'',bx=b.closest('.lp');if(bx){var t2=document.createElement('div');t2.innerHTML=htmlLapor(ADI);bx.parentNode.replaceChild(t2.firstChild,bx);}if(el('lpN'))el('lpN').value=n1;segarHit();var bk=document.querySelector('#kb .lpK [aria-checked=true]');if(bk)bk.focus();return true;}
+ if(a==='lpKulit'){var cara0=(kulitLp(LP.kulit)||{}).cara;LP.kulit=b.getAttribute('data-k');var n1=el('lpN')&&(kulitLp(LP.kulit)||{}).cara===cara0?el('lpN').value:'',bx=b.closest('.lp');if(bx){var t2=document.createElement('div');t2.innerHTML=htmlLapor(ADI);bx.parentNode.replaceChild(t2.firstChild,bx);}if(el('lpN'))el('lpN').value=n1;segarHit();var bk=document.querySelector('#kb .lpK [aria-checked=true]');if(bk)bk.focus();return true;}
  if(a==='lpKurang'||a==='lpTambah'){var inp=el('lpN'),v=parseInt(inp.value,10),mx2=LP.jenis==='MBG'?Number(ADI.kompos.siswaMaks)||60:Number(ADI.buahMaks)||500;if(!isFinite(v))v=0;v+=a==='lpTambah'?1:-1;v=Math.max(1,Math.min(mx2,v));inp.value=String(v);segarHit();return true;}
  if(a==='lpFoto'){var fi=el('lpFoto');if(fi)fi.click();return true;}
  if(a==='lpKirim'&&LP.jenis==='MBG'){
-  var stK=el('lpSt'),kl=kulitLp(LP.kulit),dK={kulit:LP.kulit,siswa:el('lpN').value.trim(),catatan:el('lpC').value};
+  var stK=el('lpSt'),kl=kulitLp(LP.kulit),tb=kl&&kl.cara==='timbang',dK=tb?{kulit:LP.kulit,berat:el('lpN').value.trim(),catatan:el('lpC').value}:{kulit:LP.kulit,siswa:el('lpN').value.trim(),catatan:el('lpC').value};
   if(ADI.staf){dK.kelas_id=kid;if(el('lpT'))dK.tanggal=el('lpT').value;}
   if(!kl)return true;
-  if(!(/^\d{1,2}$/.test(dK.siswa)&&+dK.siswa>=1&&+dK.siswa<=(Number(ADI.kompos.siswaMaks)||60))){stK.className='hs no';stK.textContent='Tulis jumlah siswa dengan angka bulat 1–'+(ADI.kompos.siswaMaks||60)+', mis. 30.';el('lpN').focus();return true;}
+  if(tb&&!/^\d{1,2}([.,]\d{1,2})?$/.test(dK.berat)){stK.className='hs no';stK.textContent='Tulis berat dalam kg, mis. 1,5 (maksimal dua angka di belakang koma).';el('lpN').focus();return true;}
+  if(!tb&&!(/^\d{1,2}$/.test(dK.siswa)&&+dK.siswa>=1&&+dK.siswa<=(Number(ADI.kompos.siswaMaks)||60))){stK.className='hs no';stK.textContent='Tulis jumlah siswa dengan angka bulat 1–'+(ADI.kompos.siswaMaks||60)+', mis. 30.';el('lpN').focus();return true;}
   if(LP.foto&&LP.foto.id)dK.foto_id=LP.foto.id;
   var sgK=JSON.stringify(dK);if(!LP_IDEM||LP_IDEM.s!==sgK)LP_IDEM={s:sgK,k:idemBaru()};dK.idem=LP_IDEM.k;
   b.disabled=true;stK.className='hs';stK.textContent='Mengirim…';
@@ -1378,7 +1384,7 @@ function aksiAdi(a,b){
    LP_IDEM=null;
    if(!j||!j.ok){stK.className='hs no';stK.textContent=(j&&j.error)||'Gagal.';return;}
    if(!j.ulang)LP.foto=null;
-   var isi=kl.nama+' '+fPoin(j.siswa)+' siswa ≈ '+fKg(j.gram)+' kg';
+   var isi=kl.nama+(j.siswa?' '+fPoin(j.siswa)+' siswa ≈ ':' ')+fKg(j.gram)+' kg';
    var pesan=j.ulang?'Laporan ini sudah terkirim sebelumnya.':(j.status==='disetujui'?'Tersimpan dan disetujui: '+isi+' = '+fPoin(j.poin)+' poin untuk rombel. Butuh '+teksTakaran(j.gram)+'.':'Terkirim: '+isi+'. Menunggu persetujuan kader atau guru (±'+fPoin(j.poin)+' poin). Butuh '+teksTakaran(j.gram)+'.');
    bukaAdi(kidB);pesanAdi('lpSt','ok',pesan);
   });
@@ -1698,6 +1704,6 @@ function mulai(){if(window.AFRAME){try{pasangScene();}catch(e){setV(false);}}els
 if(document.readyState==='complete')mulai();else window.addEventListener('load',mulai);
 })();
 </script>
-<!-- akhir Kelas Raudhah v0.20.0 -->
+<!-- akhir Kelas Raudhah v0.20.1 -->
 </body>
 </html>

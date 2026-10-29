@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kelas Raudhah v0.20.1</title>
+<title>Kelas Raudhah v0.20.2</title>
 <style>
 :root{--bg:#f4f1ea;--fg:#1f2933;--card:#ffffff;--ac:#2f6f4f;--acT:#ffffff;--mut:#5f6b76;--emas:#7a5600}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1f23;--fg:#eef1f4;--card:#262c32;--ac:#6fcf97;--acT:#0b2416;--mut:#a3adb8;--emas:#f0c35a}}
@@ -176,7 +176,7 @@ body.konfBuka #joy,body.konfBuka #bBer,body.konfBuka .bp,body.konfBuka #bVRx{vis
 
 <script>
 (function(){
-var VERSI='v0.20.1', bagian='awal', srv='', mode='';
+var VERSI='v0.20.2', bagian='awal', srv='', mode='';
 var API_URL='https://script.google.com/macros/s/AKfycbzYQXVekj9FOdf_s5CviusYl5aW32zYCCwtiaEOnnBMKD9-hHZQ6o2FIMQovi0jJjk/exec';
 var GOOGLE_CLIENT_ID='503152505847-niasbva2uksvum09lsm85j8pursok0b8.apps.googleusercontent.com';
 var sentuh=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
@@ -812,12 +812,14 @@ function jadwalGambarUlang(){clearTimeout(GULANG);GULANG=setTimeout(gambarSekali
 window.addEventListener('resize',jadwalGambarUlang);window.addEventListener('orientationchange',jadwalGambarUlang);
 function lanjutRender(){if(panelBuka||document.hidden)return;try{if(sc&&sc.renderer)sc.renderer.setAnimationLoop(sc.render);}catch(e){}}
 function terbukaLain(){var o=el('ovl'),k=el('konfK');return el('panel').style.display==='flex'||(!!o&&o.style.display==='flex')||(!!k&&k.classList.contains('on'));}
+/* v0.20.2: saat laci dibuka, data Adiwiyata diambil di latar (sekali, cache memori) supaya panel Adiwiyata langsung tampil saat diketuk. */
+function prefetchAdi(){try{if(!SAYA||!TOKEN)return;var k=TOKEN+'|infoAdiwiyata|{}';if(KC[k]||KCP[k])return;gsc('infoAdiwiyata',null,null);}catch(e){}}
 function laciBuka(on){
  var h=el('hud'),m=el('mBtn');if(!h||!m)return;on=!!on;if(on===LACI.buka)return;
  LACI.buka=on;h.classList.toggle('buka',on);h.classList.remove('atur');el('hintBtn').setAttribute('aria-expanded','false');
  document.body.classList.toggle('laciBuka',on);m.setAttribute('aria-expanded',on?'true':'false');
  if(on){for(var k in KEY)delete KEY[k];for(var t in tLook)delete tLook[t];joy.x=joy.y=0;var kn=el('knob');if(kn)kn.style.transform='';
-  panelBuka=true;jedaRender();try{el('laciX').focus({preventScroll:true});}catch(e){}}
+  panelBuka=true;jedaRender();try{el('laciX').focus({preventScroll:true});}catch(e){}prefetchAdi();}
  else{if(!terbukaLain())panelBuka=false;lanjutRender();}
 }
 function tutupLaciKeTombol(){laciBuka(false);try{el('mBtn').focus({preventScroll:true});}catch(e){}}
@@ -1330,7 +1332,7 @@ function bukaAdi(kid,fokus){
   if(j.kelas)h+='<p>Rombel <b>'+esc(j.kelas.nama_kelas)+'</b> · kader: '+(j.kelas.kader.length?esc(j.kelas.kader.join(', ')):'<i>belum ditunjuk</i>')+'</p>';
   else if(!j.staf&&!j.guruBukanAdi)h+='<p><small>Akunmu belum masuk rombel.</small></p>';
   if(bisaCatat&&j.kelas){
-   h+='<h3>Catat timbangan</h3>'+(j.kader&&!j.staf?'<p><small>Kamu kader rombel ini. Timbang sampah yang sudah dipilah, lalu catat per jenis.</small></p>':'');
+   h+='<h3>Catat timbangan</h3>'+(j.kader&&!j.staf?'<p><small>Kamu kader rombel ini. Timbang sampah yang sudah dipilah, lalu catat per jenis.</small></p>':'')+'<p><small>Sisa makanan MBG (nasi, sayur, lauk, kulit buah) dilaporkan lewat <b>Kompos MBG</b> di atas, jangan ditimbang di sini juga.</small></p>';
    h+='<div class="lb" id="adJL">Jenis sampah</div><select id="adJ" aria-labelledby="adJL">'+j.jenis.map(function(x){return '<option value="'+esc(x.kode)+'">'+esc(x.nama)+' · '+esc(fPoin(x.poin_per_kg))+' poin/kg</option>';}).join('')+'</select>';
    h+='<div class="lb" id="adBL">Berat (kg), mis. 1,5</div><input id="adB" inputmode="decimal" autocomplete="off" maxlength="6" aria-labelledby="adBL" placeholder="1,5">';
    if(j.staf)h+='<div class="lb" id="adTL">Tanggal (hari ini sampai 30 hari ke belakang)</div><input id="adT" type="date" aria-labelledby="adTL" value="'+esc(j.hari)+'" max="'+esc(j.hari)+'" min="'+esc(geserHari(j.hari,-30))+'">';
@@ -1704,6 +1706,6 @@ function mulai(){if(window.AFRAME){try{pasangScene();}catch(e){setV(false);}}els
 if(document.readyState==='complete')mulai();else window.addEventListener('load',mulai);
 })();
 </script>
-<!-- akhir Kelas Raudhah v0.20.1 -->
+<!-- akhir Kelas Raudhah v0.20.2 -->
 </body>
 </html>

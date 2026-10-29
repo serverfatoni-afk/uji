@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kelas Raudhah v0.18.0</title>
+<title>Kelas Raudhah v0.19.0</title>
 <style>
 :root{--bg:#f4f1ea;--fg:#1f2933;--card:#ffffff;--ac:#2f6f4f;--acT:#ffffff;--mut:#5f6b76;--emas:#7a5600}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1f23;--fg:#eef1f4;--card:#262c32;--ac:#6fcf97;--acT:#0b2416;--mut:#a3adb8;--emas:#f0c35a}}
@@ -41,7 +41,7 @@ html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:
 .pb-me{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,#1d2d50,#34508c);color:#fff;margin:2px 0 12px}.pb-me b{font-size:30px;line-height:1}.pb-me small{opacity:1;color:#e3e9f7}
 .pb-pod{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin:6px 0 12px}.pb-pc{flex:1;min-width:0;text-align:center;border-radius:14px 14px 6px 6px;padding:8px 4px;color:#1d1d1d}.pb-pc .k{font-size:20px;font-weight:800;line-height:1.1}.pb-pc .n{font-weight:700;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px}.pb-pc .p{font-size:12px;font-weight:600}.pb-pc.r1{min-height:122px;background:linear-gradient(180deg,#ffe082,#ffb300)}.pb-pc.r2{min-height:100px;background:linear-gradient(180deg,#eceff1,#b0bec5)}.pb-pc.r3{min-height:88px;background:linear-gradient(180deg,#ffccbc,#d98c5f)}.pb-pc.me{outline:3px solid #1d2d50}
 .pb-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;margin:5px 0;background:rgba(128,128,128,.12)}.pb-row.me{background:rgba(194,138,0,.22);outline:2px solid #c28a00}.pb-rk{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;background:rgba(128,128,128,.28);flex:none}.pb-nm{flex:1;min-width:0;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pb-pt{font-weight:700;color:var(--emas);white-space:nowrap}.pb-note{font-size:12px;color:var(--mut);margin-top:10px}
-#kb .pb-row.me .pb-pt,#kb .pb-row.me .pb-pt small{color:var(--fg)}.adW.batal span{text-decoration:line-through;opacity:.7}.lp{border:2px solid var(--ac);border-radius:14px;padding:10px 12px;margin:4px 0 12px;background:var(--lHov)}.lp>b{font-size:16px;display:block}#kb .lp .baris button.p{flex:1}.lpJn{display:flex;gap:8px;margin:8px 0 2px}#kb .lpJn button{flex:1;min-height:56px;padding:8px;border:2px solid var(--mut);border-radius:12px;background:var(--card);color:var(--fg);font-size:15px;cursor:pointer;text-align:center;line-height:1.25}#kb .lpJn button[aria-checked=true]{border-color:var(--ac);background:var(--lHm);color:var(--lHt);font-weight:700}#kb .lpJn small{display:block;font-weight:400;font-size:12px}.lpN{display:flex;gap:6px;align-items:stretch}#kb .lpN input{flex:1;min-width:0;font-size:18px;text-align:center}#kb .lpN button{width:48px;min-height:44px;font-size:22px;padding:0}#kb #lpC,#kb #lpT{width:100%}.lpR{border-radius:12px;padding:8px 10px;margin:6px 0;background:rgba(128,128,128,.12)}.lpR .baris{flex-wrap:wrap}#kb .lpR button{flex:1;min-width:110px}.lpR select{width:100%}.bdg{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:700;border:1px solid currentColor}.bdg.menunggu{color:var(--emas)}.bdg.disetujui{color:var(--lHt);background:var(--lHm)}.bdg.ditolak,.bdg.dibatalkan{color:var(--lMt);background:var(--lMm)}.lpR.tl .tlB{display:block}.tlB{display:none;margin-top:6px}.adW.batal span b{text-decoration:none}.adP{max-height:none}#kb #adB,#kb #adC,#kb #adT,#kb #adJ{width:100%}
+#kb .pb-row.me .pb-pt,#kb .pb-row.me .pb-pt small{color:var(--fg)}.adW.batal span{text-decoration:line-through;opacity:.7}.lp{border:2px solid var(--ac);border-radius:14px;padding:10px 12px;margin:4px 0 12px;background:var(--lHov)}.lp>b{font-size:16px;display:block}#kb .lp .baris button.p{flex:1}.lpJn{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px}#kb .lpJn button{min-width:96px}#kb .lpK button{flex:1 1 calc(50% - 8px);min-height:48px}.lpHit{margin:8px 0 2px;padding:8px 10px;border-radius:10px;background:var(--card);border:1px dashed var(--ac);font-size:14px}.lpHit b{color:var(--lHt)}.kmp{padding:8px 10px;border-radius:12px;background:rgba(128,128,128,.12);margin:6px 0}#kb .pk,#kb .pkJ{width:100%}.pkR{display:flex;gap:8px;align-items:center;margin:4px 0}.pkR span{flex:1}#kb .pkR input.pkJ{width:90px}#kb .pkR label{display:flex;gap:4px;align-items:center;font-size:13px;color:var(--fg);margin:0}#kb .lpJn button{flex:1;min-height:56px;padding:8px;border:2px solid var(--mut);border-radius:12px;background:var(--card);color:var(--fg);font-size:15px;cursor:pointer;text-align:center;line-height:1.25}#kb .lpJn button[aria-checked=true]{border-color:var(--ac);background:var(--lHm);color:var(--lHt);font-weight:700}#kb .lpJn small{display:block;font-weight:400;font-size:12px}.lpN{display:flex;gap:6px;align-items:stretch}#kb .lpN input{flex:1;min-width:0;font-size:18px;text-align:center}#kb .lpN button{width:48px;min-height:44px;font-size:22px;padding:0}#kb #lpC,#kb #lpT{width:100%}.lpR{border-radius:12px;padding:8px 10px;margin:6px 0;background:rgba(128,128,128,.12)}.lpR .baris{flex-wrap:wrap}#kb .lpR button{flex:1;min-width:110px}.lpR select{width:100%}.bdg{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:700;border:1px solid currentColor}.bdg.menunggu{color:var(--emas)}.bdg.disetujui{color:var(--lHt);background:var(--lHm)}.bdg.ditolak,.bdg.dibatalkan{color:var(--lMt);background:var(--lMm)}.lpR.tl .tlB{display:block}.tlB{display:none;margin-top:6px}.adW.batal span b{text-decoration:none}.adP{max-height:none}#kb #adB,#kb #adC,#kb #adT,#kb #adJ{width:100%}
 .sd.sw,.sd.gr{margin:6px 0}.sw .ok,.gr .ok{color:#2e7d32;font-weight:700}.lgR{padding:6px 0;border-bottom:1px solid rgba(128,128,128,.25);word-break:break-word}#kb select.pa,#kb input.pa{width:100%}
 .pb-pc .p2{font-size:11px;opacity:.8}.pb-pt{text-align:right}.pb-pt small{display:block;font-weight:500;font-size:11px;color:var(--mut)}
 .tk{border:2px solid #c28a00;border-radius:14px;padding:10px 12px;margin:2px 0 12px;background:rgba(255,193,7,.12)}.tk-a{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}.tk-a b{font-size:15px}.tk .baris{margin:6px 0 0}.tk-k{margin:4px 0 0}#tkSt:empty{display:none}
@@ -176,7 +176,7 @@ body.konfBuka #joy,body.konfBuka #bBer,body.konfBuka .bp,body.konfBuka #bVRx{vis
 
 <script>
 (function(){
-var VERSI='v0.18.0', bagian='awal', srv='', mode='';
+var VERSI='v0.19.0', bagian='awal', srv='', mode='';
 var API_URL='https://script.google.com/macros/s/AKfycbzYQXVekj9FOdf_s5CviusYl5aW32zYCCwtiaEOnnBMKD9-hHZQ6o2FIMQovi0jJjk/exec';
 var GOOGLE_CLIENT_ID='503152505847-niasbva2uksvum09lsm85j8pursok0b8.apps.googleusercontent.com';
 var sentuh=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
@@ -1170,7 +1170,9 @@ function bukaAdmin(tab){
     h+='<small id="paK'+i+'">'+esc(a.ket)+(a.jenis==='angka'?' ('+esc(a.min)+'–'+esc(a.maks)+')':'')+'</small>';
    });
    h+='<div class="baris"><button class="p" data-act="simpanAtur">Simpan pengaturan</button></div><small>Berlaku langsung untuk siswa yang memuat ulang data (paling lambat ±2 menit). Nilai lain hanya bisa diubah di tab Pengaturan pada Sheets.</small>';
+   h+='<div id="admK"><p>Memuat pengaturan kompos…</p></div>';
    el('kb').innerHTML=(dc?'<div class="muat" id="sg"></div>':'')+h+akhir;
+   if(!dc)isiAdmKompos(pn);
   });
  }else{
   gsc('lihatLog',{n:100,cari:cari},function(j,dc){
@@ -1182,6 +1184,14 @@ function bukaAdmin(tab){
   });
  }
 }
+/* v0.19.0: pengaturan kompos (pemilik) di Panel Admin → Pengaturan: takaran EM4 + berat standar kulit buah. */
+function isiAdmKompos(pn){gs('ambilKompos').then(function(j){var d=el('admK');if(!d||pn!==PNL)return;if(!j||!j.ok){d.innerHTML=galatSoal(j);return;}
+ var h='<h3 id="admKJ">Kompos MBG (takaran EM4)</h3>';
+ j.atur.forEach(function(a,i){h+='<div class="lb" id="pkL'+i+'">'+esc(a.kunci)+'</div><input class="pk" type="number" inputmode="numeric" data-k="'+esc(a.kunci)+'" min="'+esc(a.min)+'" max="'+esc(a.maks)+'" value="'+esc(a.nilai)+'" aria-labelledby="pkL'+i+' pkK'+i+'"><small id="pkK'+i+'">'+esc(a.ket)+' ('+esc(a.min)+'–'+esc(a.maks)+')</small>';});
+ h+='<h4>Berat standar kulit buah (gram per siswa)</h4>';
+ j.jenis.forEach(function(x,i){h+='<div class="pkR"><span id="pjL'+i+'">'+esc(x.nama)+'</span><input class="pkJ" type="number" inputmode="numeric" min="1" max="'+esc(j.maksG)+'" data-k="'+esc(x.kode)+'" value="'+esc(x.berat_g)+'" aria-labelledby="pjL'+i+'"><label><input type="checkbox" class="pkA" data-k="'+esc(x.kode)+'"'+(x.aktif?' checked':'')+'> aktif</label></div>';});
+ h+='<div class="baris"><button class="p" data-act="simpanKompos">Simpan pengaturan kompos</button></div><p class="hs" id="pkSt" role="status"></p><small>Jenis kulit baru ditambahkan di tab JenisKompos pada Sheets. Laporan yang sudah masuk tidak berubah beratnya.</small>';
+ d.innerHTML=h;});}
 function aksiAdmin(a,b){
  var hasil=function(j,ok){tampilHasil(j&&j.ok?ok:galatSoal(j));};
  if(a==='mAdmin'){bukaAdmin('guru');return true;}
@@ -1197,6 +1207,9 @@ function aksiAdmin(a,b){
  if(a==='swSandi'&&id){if(!window.confirm('Buat sandi baru untuk siswa ini? Sandi lama tidak berlaku lagi.'))return true;b.disabled=true;gs('aturSiswa',{id:id,resetSandi:true}).then(function(j){b.disabled=false;hasil(j,'Sandi baru untuk <b>'+esc(j&&j.login)+'</b>: <b>'+esc(j&&j.sandi)+'</b><br><small>Catat sekarang dan berikan ke siswa. Sandi tidak ditampilkan lagi.</small>');});return true;}
  if(a==='swPindah'&&id){var s2=kartu.querySelector('.swK');if(!s2)return true;if(!window.confirm('Pindahkan siswa ini ke '+s2.options[s2.selectedIndex].text+'? Poin dan bintangnya ikut pindah.'))return true;b.disabled=true;gs('aturSiswa',{id:id,pindahKe:s2.value}).then(function(j){b.disabled=false;if(j&&j.ok)bukaKelasDetail(KLS.kelas_id);else hasil(j);});return true;}
  if(a==='grAktif'){var g=b.closest('.gr'),on2=b.getAttribute('data-v')==='1';if(!g)return true;if(!on2&&!window.confirm('Nonaktifkan guru ini? Ia langsung keluar. Kelas dan nilai siswanya tetap tersimpan.'))return true;b.disabled=true;gs('aturGuru',{id:g.getAttribute('data-id'),aktif:on2}).then(function(j){b.disabled=false;if(j&&j.ok)bukaAdmin('guru');else hasil(j);});return true;}
+ if(a==='simpanKompos'){var at={},jn=[],st=el('pkSt');Array.prototype.forEach.call(document.querySelectorAll('#kb .pk'),function(x){at[x.getAttribute('data-k')]=x.value;});
+  Array.prototype.forEach.call(document.querySelectorAll('#kb .pkJ'),function(x){var c=document.querySelector('#kb .pkA[data-k="'+x.getAttribute('data-k')+'"]');jn.push({kode:x.getAttribute('data-k'),berat_g:x.value,aktif:!c||c.checked});});
+  b.disabled=true;st.className='hs';st.textContent='Menyimpan…';gs('simpanKompos',{atur:at,jenis:jn}).then(function(j){b.disabled=false;if(j&&j.ok){st.className='hs ok';st.textContent='Pengaturan kompos tersimpan.';}else{st.className='hs no';st.innerHTML=galatSoal(j);}});return true;}
  if(a==='grAdi'){var g3=b.closest('.gr');if(!g3)return true;b.disabled=true;gs('aturGuruAdi',{id:g3.getAttribute('data-id'),adi:b.getAttribute('data-v')==='1'}).then(function(j){b.disabled=false;if(j&&j.ok)bukaAdmin('guru');else hasil(j);});return true;}
  if(a==='simpanAtur'){var nilai={};Array.prototype.forEach.call(document.querySelectorAll('#kb .pa'),function(x){nilai[x.getAttribute('data-k')]=x.value;});b.disabled=true;gs('simpanPengaturan',{nilai:nilai}).then(function(j){b.disabled=false;if(j&&j.ok){tampilHasil('Pengaturan tersimpan.');segarPapan();}else tampilHasil(galatSoal(j));});return true;}
  return false;
@@ -1209,25 +1222,42 @@ function geserHari(t,n){var d=new Date(t+'T00:00:00Z');d.setUTCDate(d.getUTCDate
 /* v0.18.0 (Adiwiyata Ekoteologis Tahap A): lapor botol (buah) / kertas (kg) -> menunggu -> disetujui kader/guru Adiwiyata -> poin rombel. */
 var LP={jenis:''},LP_IDEM=null;
 function fJml(x){return x.satuan==='buah'?fPoin(x.jumlah)+' botol':fKg(x.jumlah)+' kg';}
-function jenisLp(k){var r=null;if(ADI&&ADI.jenisLapor)ADI.jenisLapor.forEach(function(j){if(j.kode===k)r=j;});return r;}
+function jenisLp(k){var r=null;if(ADI&&ADI.jenisLapor)ADI.jenisLapor.forEach(function(j){if(j.kode===k)r=j;});if(!r&&k==='MBG'&&ADI&&ADI.kompos&&ADI.kompos.aktif&&ADI.kompos.jenis.length)r={kode:'MBG',nama:'Kompos MBG',satuan:'kompos',poin_per_satuan:ADI.kompos.poin_per_kg};return r;}
+/* v0.19.0: kompos MBG = berat standar kulit buah x jumlah siswa; takaran larutan EM4 dari pengaturan pemilik. */
+function kulitLp(k){var r=null;if(ADI&&ADI.kompos)ADI.kompos.jenis.forEach(function(j){if(j.kode===k)r=j;});return r;}
+function fDes(x,d){try{return Number(x).toLocaleString('id-ID',{maximumFractionDigits:d===undefined?1:d});}catch(e){return String(x);}}
+function hitTakaran(g){var a=ADI.kompos.atur,air=g/1000/a.kompos_kg_per_takaran*a.kompos_larutan_ml,l=air/1000;return {air:air,em4:l*a.kompos_em4_ml_per_l,mol:l*a.kompos_molase_ml_per_l};}
+function teksTakaran(g){var t=hitTakaran(g);return 'larutan '+fDes(t.air/1000,2)+' L air + '+fDes(t.em4)+' ml EM4 + '+fDes(t.mol)+' ml molase';}
+function segarHit(){var h=el('lpHit'),i=el('lpN');if(!h||!i||!ADI||!ADI.kompos)return;var k=kulitLp(LP.kulit),n=i.value.trim();
+ if(!k||!/^\d{1,2}$/.test(n)||+n<1||+n>ADI.kompos.siswaMaks){h.innerHTML='Isi jumlah siswa (1–'+esc(ADI.kompos.siswaMaks)+') untuk menghitung berat dan larutan EM4.';return;}
+ var g=k.berat_g*(+n),p=Math.round(g*(Number(ADI.kompos.poin_per_kg)||0)/1000);
+ h.innerHTML='Berat total ≈ <b>'+esc(fKg(g))+' kg</b> ('+esc(fPoin(k.berat_g))+' g × '+esc(n)+' siswa) · ±'+esc(fPoin(p))+' poin rombel<br>Kebutuhan: '+esc(teksTakaran(g))+'.';}
+document.addEventListener('input',function(e){if(e.target&&e.target.id==='lpN'&&LP.jenis==='MBG')segarHit();});
 var ST_LP={menunggu:'menunggu',disetujui:'disetujui',ditolak:'ditolak',dibatalkan:'dibatalkan'};
 function htmlLapor(j){
  var jl=(j.jenisLapor||[]).slice().sort(function(a,b){return (a.satuan==='buah'?0:1)-(b.satuan==='buah'?0:1);});
+ var km=j.kompos;if(km&&km.aktif&&km.jenis&&km.jenis.length)jl.push({kode:'MBG',nama:'Kompos MBG',satuan:'kompos',poin_per_satuan:km.poin_per_kg});
  if(!jl.length||SAYA.juri||j.guruBukanAdi)return '';
  if(!j.kelas)return j.staf?'':'<div class="lp"><b>♻ Lapor sampah</b><p><small>Akunmu belum masuk rombel aktif. Minta guru memindahkanmu ke rombelmu dulu.</small></p></div>';
  if(!jenisLp(LP.jenis))LP.jenis=jl[0].kode;
- var js=jenisLp(LP.jenis),buah=js.satuan==='buah';
+ var js=jenisLp(LP.jenis),buah=js.satuan==='buah',kom=js.satuan==='kompos';
  var h='<div class="lp" role="group" aria-labelledby="lpJ"><b id="lpJ">♻ Lapor sampah</b><small>Rombel <b>'+esc(j.kelas.nama_kelas)+'</b> · '+(j.staf?'laporan guru langsung disetujui':'menunggu persetujuan kader atau guru, lalu poinnya masuk ke rombel')+'</small>';
- h+='<div class="lpJn" role="radiogroup" aria-label="Jenis sampah yang dilaporkan">'+jl.map(function(x){var c=x.kode===LP.jenis;return '<button type="button" role="radio" data-act="lpJenis" data-k="'+esc(x.kode)+'" aria-checked="'+(c?'true':'false')+'" tabindex="'+(c?'0':'-1')+'">'+esc(x.nama)+'<small>'+(x.satuan==='buah'?'dihitung per buah':'ditimbang dalam kg')+' · '+esc(fPoin(x.poin_per_satuan))+' poin/'+(x.satuan==='buah'?'buah':'kg')+'</small></button>';}).join('')+'</div>';
- h+='<div class="lb" id="lpNL">'+(buah?'Jumlah botol (1–'+esc(j.buahMaks||500)+')':'Berat (kg), mis. 1,5')+'</div>';
- h+='<div class="lpN">'+(buah?'<button type="button" class="s2" data-act="lpKurang" aria-label="Kurangi satu">−</button>':'')+'<input id="lpN" autocomplete="off" aria-labelledby="lpNL" '+(buah?'inputmode="numeric" maxlength="3" placeholder="10"':'inputmode="decimal" maxlength="6" placeholder="1,5"')+'>'+(buah?'<button type="button" class="s2" data-act="lpTambah" aria-label="Tambah satu">+</button>':'')+'</div>';
+ h+='<div class="lpJn" role="radiogroup" aria-label="Jenis sampah yang dilaporkan">'+jl.map(function(x){var c=x.kode===LP.jenis;return '<button type="button" role="radio" data-act="lpJenis" data-k="'+esc(x.kode)+'" aria-checked="'+(c?'true':'false')+'" tabindex="'+(c?'0':'-1')+'">'+esc(x.nama)+'<small>'+(x.satuan==='buah'?'dihitung per buah':(x.satuan==='kompos'?'kulit buah × siswa':'ditimbang dalam kg'))+' · '+esc(fPoin(x.poin_per_satuan))+' poin/'+(x.satuan==='buah'?'buah':'kg')+'</small></button>';}).join('')+'</div>';
+ if(kom){
+  if(!kulitLp(LP.kulit))LP.kulit=j.kompos.jenis[0].kode;
+  h+='<div class="lb" id="lpKL">Jenis kulit buah</div><div class="lpJn lpK" role="radiogroup" aria-labelledby="lpKL">'+j.kompos.jenis.map(function(x){var c=x.kode===LP.kulit;return '<button type="button" role="radio" data-act="lpKulit" data-k="'+esc(x.kode)+'" aria-checked="'+(c?'true':'false')+'" tabindex="'+(c?'0':'-1')+'">'+esc(x.nama)+'<small>'+esc(fPoin(x.berat_g))+' g per siswa</small></button>';}).join('')+'</div>';
+ }
+ var buahN=buah||kom,mx=kom?j.kompos.siswaMaks:(j.buahMaks||500);
+ h+='<div class="lb" id="lpNL">'+(kom?'Jumlah siswa yang membuang (1–'+esc(mx)+')':(buah?'Jumlah botol (1–'+esc(mx)+')':'Berat (kg), mis. 1,5'))+'</div>';
+ h+='<div class="lpN">'+(buahN?'<button type="button" class="s2" data-act="lpKurang" aria-label="Kurangi satu">−</button>':'')+'<input id="lpN" autocomplete="off" aria-labelledby="lpNL" '+(buahN?'inputmode="numeric" maxlength="3" placeholder="'+(kom?'30':'10')+'"':'inputmode="decimal" maxlength="6" placeholder="1,5"')+'>'+(buahN?'<button type="button" class="s2" data-act="lpTambah" aria-label="Tambah satu">+</button>':'')+'</div>';
+ if(kom)h+='<div class="lpHit" id="lpHit" aria-live="polite"></div>';
  if(j.staf)h+='<div class="lb" id="lpTL">Tanggal (hari ini sampai 30 hari ke belakang)</div><input id="lpT" type="date" aria-labelledby="lpTL" value="'+esc(j.hari)+'" max="'+esc(j.hari)+'" min="'+esc(geserHari(j.hari,-30))+'">';
  h+='<div class="lb" id="lpCL">Catatan (boleh kosong), mis. dari kantin</div><input id="lpC" maxlength="120" aria-labelledby="lpCL">';
  h+='<div class="baris"><button class="p" data-act="lpKirim">Kirim laporan</button></div><p class="hs" id="lpSt" role="status"></p></div>';
  return h;
 }
 function htmlLpBaris(x,j,tinjau){
- var h='<div class="lpR" data-id="'+esc(x.id)+'"><span><span class="bdg '+esc(ST_LP[x.status]||'')+'">'+esc(x.status)+'</span> '+(tinjau?'<b>'+esc(x.kelas)+'</b> · ':'')+esc(x.nama_jenis)+' · <b>'+esc(fJml(x))+'</b>'+(x.status==='disetujui'||tinjau?' · '+(x.status==='disetujui'?'':'±')+esc(fPoin(x.poin))+' poin':'')+'<br><small>'+esc(x.tanggal)+(tinjau?' · oleh '+esc(x.oleh):'')+(x.catatan?' · '+esc(x.catatan):'')+(x.alasan?' · alasan: '+esc(x.alasan):'')+'</small></span>';
+ var h='<div class="lpR" data-id="'+esc(x.id)+'"><span><span class="bdg '+esc(ST_LP[x.status]||'')+'">'+esc(x.status)+'</span> '+(tinjau?'<b>'+esc(x.kelas)+'</b> · ':'')+esc(x.nama_jenis)+(x.kulit?' ('+esc(x.kulit)+', '+esc(x.siswa)+' siswa)':'')+' · <b>'+esc(fJml(x))+'</b>'+(x.status==='disetujui'||tinjau?' · '+(x.status==='disetujui'?'':'±')+esc(fPoin(x.poin))+' poin':'')+'<br><small>'+esc(x.tanggal)+(tinjau?' · oleh '+esc(x.oleh):'')+(x.catatan?' · '+esc(x.catatan):'')+(x.alasan?' · alasan: '+esc(x.alasan):'')+'</small></span>';
  if(tinjau){
   if(x.milik&&!j.staf)h+='<p><small>Laporanmu sendiri: ditinjau kader lain atau guru.</small></p>';
   else h+='<div class="baris"><button class="p" data-act="lpSetuju" aria-label="Setujui '+esc(x.nama_jenis)+' '+esc(fJml(x))+' dari '+esc(x.oleh)+'">Setujui</button><button class="s2" data-act="lpTolak" aria-expanded="false" aria-label="Tolak '+esc(x.nama_jenis)+' '+esc(fJml(x))+' dari '+esc(x.oleh)+'">Tolak</button></div>'
@@ -1259,6 +1289,11 @@ function bukaAdi(kid,fokus){
   h+='<h3>Papan rombel · '+esc(bl)+'</h3><p><small>Poin Adiwiyata milik rombel, dari timbangan kader dan laporan botol/kertas yang sudah disetujui. Tidak mengubah poin atau bintang pribadi.</small></p>';
   if(!j.papan.length)h+='<p><small>Belum ada poin rombel bulan ini.</small></p>';
   else h+='<div class="adP">'+j.papan.map(function(x){var me=j.kelas&&x.kelas_id===j.kelas.kelas_id;return '<div class="pb-row'+(me?' me':'')+'"><span class="pb-rk">'+esc(x.r)+'</span><span class="pb-nm">'+esc(x.nama_kelas)+(me?' (rombelmu)':'')+'</span><span class="pb-pt">'+esc(fPoin(x.poin))+' poin<small>'+esc(fKg(x.gram))+' kg'+(x.buah?' · '+esc(fPoin(x.buah))+' botol':'')+'</small></span></div>';}).join('')+'</div>';
+  if(j.kompos&&j.kompos.aktif){var kb2=j.kompos.bulan,a2=j.kompos.atur;
+   h+='<h3 id="kmpJ">Kompos MBG bulan ini</h3><div class="kmp"><p>Sekolah: <b>'+esc(fKg(kb2.gram_sekolah))+' kg</b> kulit buah ('+esc(kb2.laporan)+' laporan disetujui) → '+esc(teksTakaran(kb2.gram_sekolah))+'.</p>'+(j.kelas?'<p>Rombel '+esc(j.kelas.nama_kelas)+': <b>'+esc(fKg(kb2.gram_rombel))+' kg</b> → '+esc(teksTakaran(kb2.gram_rombel))+'.</p>':'')+'<small>Takaran: '+esc(fDes(a2.kompos_larutan_ml/1000,2))+' L larutan per '+esc(a2.kompos_kg_per_takaran)+' kg; tiap liter air + '+esc(a2.kompos_em4_ml_per_l)+' ml EM4 + '+esc(a2.kompos_molase_ml_per_l)+' ml molase (diatur pemilik).</small></div>';
+   if(j.staf)h+='<div class="baris"><button class="s2" data-act="adRekapK">Unduh rekap kompos bulan ini (CSV)</button></div>';
+   if(SAYA.peran==='pemilik'&&!SAYA.juri)h+='<div class="baris"><button class="s2" data-act="adAturK">Atur takaran EM4 &amp; berat standar</button></div>';
+  }
   var bisaCatat=j.staf||(j.kader&&j.kelas&&j.kader.kelas_id===j.kelas.kelas_id);
   if(j.kelas)h+='<p>Rombel <b>'+esc(j.kelas.nama_kelas)+'</b> · kader: '+(j.kelas.kader.length?esc(j.kelas.kader.join(', ')):'<i>belum ditunjuk</i>')+'</p>';
   else if(!j.staf&&!j.guruBukanAdi)h+='<p><small>Akunmu belum masuk rombel.</small></p>';
@@ -1283,6 +1318,7 @@ function bukaAdi(kid,fokus){
   }
   h+='<div id="hasilK" class="hasil" role="status" style="display:none"></div>';
   el('kb').innerHTML=(dc?'<div class="muat" id="sg"></div>':'')+h;
+  segarHit();
   if(!dc&&fokus){var f=el(fokus);if(f){try{f.scrollIntoView({block:'start'});}catch(e){}}}
  });
 }
@@ -1297,8 +1333,29 @@ function aksiAdi(a,b){
  if(a==='adPilih'){bukaAdi(el('adR').value);return true;}
  if(!ADI)return false;
  var kid=ADI.kelas?ADI.kelas.kelas_id:'',kidB=ADI.staf?kid:'';
- if(a==='lpJenis'){var n0=el('lpN')?el('lpN').value:'';LP.jenis=b.getAttribute('data-k');var box=b.closest('.lp');if(box){var t=document.createElement('div');t.innerHTML=htmlLapor(ADI);box.parentNode.replaceChild(t.firstChild,box);}var bj=document.querySelector('#kb .lpJn [aria-checked=true]');if(bj)bj.focus();return true;}
- if(a==='lpKurang'||a==='lpTambah'){var inp=el('lpN'),v=parseInt(inp.value,10);if(!isFinite(v))v=0;v+=a==='lpTambah'?1:-1;v=Math.max(1,Math.min(Number(ADI.buahMaks)||500,v));inp.value=String(v);return true;}
+ if(a==='lpJenis'){var n0=el('lpN')?el('lpN').value:'';LP.jenis=b.getAttribute('data-k');var box=b.closest('.lp');if(box){var t=document.createElement('div');t.innerHTML=htmlLapor(ADI);box.parentNode.replaceChild(t.firstChild,box);}segarHit();var bj=document.querySelector('#kb .lpJn [aria-checked=true]');if(bj)bj.focus();return true;}
+ if(a==='lpKulit'){LP.kulit=b.getAttribute('data-k');var n1=el('lpN')?el('lpN').value:'',bx=b.closest('.lp');if(bx){var t2=document.createElement('div');t2.innerHTML=htmlLapor(ADI);bx.parentNode.replaceChild(t2.firstChild,bx);}if(el('lpN'))el('lpN').value=n1;segarHit();var bk=document.querySelector('#kb .lpK [aria-checked=true]');if(bk)bk.focus();return true;}
+ if(a==='lpKurang'||a==='lpTambah'){var inp=el('lpN'),v=parseInt(inp.value,10),mx2=LP.jenis==='MBG'?Number(ADI.kompos.siswaMaks)||60:Number(ADI.buahMaks)||500;if(!isFinite(v))v=0;v+=a==='lpTambah'?1:-1;v=Math.max(1,Math.min(mx2,v));inp.value=String(v);segarHit();return true;}
+ if(a==='lpKirim'&&LP.jenis==='MBG'){
+  var stK=el('lpSt'),kl=kulitLp(LP.kulit),dK={kulit:LP.kulit,siswa:el('lpN').value.trim(),catatan:el('lpC').value};
+  if(ADI.staf){dK.kelas_id=kid;if(el('lpT'))dK.tanggal=el('lpT').value;}
+  if(!kl)return true;
+  if(!(/^\d{1,2}$/.test(dK.siswa)&&+dK.siswa>=1&&+dK.siswa<=(Number(ADI.kompos.siswaMaks)||60))){stK.className='hs no';stK.textContent='Tulis jumlah siswa dengan angka bulat 1–'+(ADI.kompos.siswaMaks||60)+', mis. 30.';el('lpN').focus();return true;}
+  var sgK=JSON.stringify(dK);if(!LP_IDEM||LP_IDEM.s!==sgK)LP_IDEM={s:sgK,k:idemBaru()};dK.idem=LP_IDEM.k;
+  b.disabled=true;stK.className='hs';stK.textContent='Mengirim…';
+  gs('laporKompos',dK).then(function(j){
+   b.disabled=false;
+   if(j&&j.kode==='JARINGAN'){stK.className='hs no';stK.textContent='Server tidak terjangkau. Tekan Kirim lagi (tidak akan tercatat dua kali).';return;}
+   LP_IDEM=null;
+   if(!j||!j.ok){stK.className='hs no';stK.textContent=(j&&j.error)||'Gagal.';return;}
+   var isi=kl.nama+' '+fPoin(j.siswa)+' siswa ≈ '+fKg(j.gram)+' kg';
+   var pesan=j.ulang?'Laporan ini sudah terkirim sebelumnya.':(j.status==='disetujui'?'Tersimpan dan disetujui: '+isi+' = '+fPoin(j.poin)+' poin untuk rombel. Butuh '+teksTakaran(j.gram)+'.':'Terkirim: '+isi+'. Menunggu persetujuan kader atau guru (±'+fPoin(j.poin)+' poin). Butuh '+teksTakaran(j.gram)+'.');
+   bukaAdi(kidB);pesanAdi('lpSt','ok',pesan);
+  });
+  return true;
+ }
+ if(a==='adRekapK'){b.disabled=true;gs('rekapKompos',{bulan:ADI.bulan}).then(function(j){b.disabled=false;if(j&&j.ok){unduhCsv(j);tampilHasil('Rekap kompos '+esc(j.bulan)+' diunduh: <b>'+esc(j.nama_berkas)+'</b>.');}else tampilHasil(galatSoal(j));});return true;}
+ if(a==='adAturK'){bukaAdmin('atur');return true;}
  if(a==='lpKirim'){
   var st=el('lpSt'),js=jenisLp(LP.jenis),d={jenis:LP.jenis,jumlah:el('lpN').value.trim(),catatan:el('lpC').value};
   if(ADI.staf){d.kelas_id=kid;if(el('lpT'))d.tanggal=el('lpT').value;}
@@ -1611,6 +1668,6 @@ function mulai(){if(window.AFRAME){try{pasangScene();}catch(e){setV(false);}}els
 if(document.readyState==='complete')mulai();else window.addEventListener('load',mulai);
 })();
 </script>
-<!-- akhir Kelas Raudhah v0.18.0 -->
+<!-- akhir Kelas Raudhah v0.19.0 -->
 </body>
 </html>

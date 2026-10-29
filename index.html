@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kelas Raudhah v0.19.0</title>
+<title>Kelas Raudhah v0.19.1</title>
 <style>
 :root{--bg:#f4f1ea;--fg:#1f2933;--card:#ffffff;--ac:#2f6f4f;--acT:#ffffff;--mut:#5f6b76;--emas:#7a5600}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1f23;--fg:#eef1f4;--card:#262c32;--ac:#6fcf97;--acT:#0b2416;--mut:#a3adb8;--emas:#f0c35a}}
@@ -176,7 +176,7 @@ body.konfBuka #joy,body.konfBuka #bBer,body.konfBuka .bp,body.konfBuka #bVRx{vis
 
 <script>
 (function(){
-var VERSI='v0.19.0', bagian='awal', srv='', mode='';
+var VERSI='v0.19.1', bagian='awal', srv='', mode='';
 var API_URL='https://script.google.com/macros/s/AKfycbzYQXVekj9FOdf_s5CviusYl5aW32zYCCwtiaEOnnBMKD9-hHZQ6o2FIMQovi0jJjk/exec';
 var GOOGLE_CLIENT_ID='503152505847-niasbva2uksvum09lsm85j8pursok0b8.apps.googleusercontent.com';
 var sentuh=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
@@ -804,6 +804,12 @@ function jadiItem(b,ik,lbl,kls){if(!b)return null;b.type='button';b.className='l
 function setLabel(b,t){var s=b&&b.querySelector('.lLbl');if(s)s.textContent=t;else if(b)b.textContent=t;}
 var LACI={buka:false},KONF={lanjut:null,pemicu:null};
 function jedaRender(){try{if(sc&&sc.renderer)sc.renderer.setAnimationLoop(null);}catch(e){}}
+/* v0.19.1: saat panel/laci terbuka gambar 3D dijeda; bila HP diputar atau jendela berubah ukuran, kanvas dikosongkan browser.
+   Gambar ulang SATU bingkai (tanpa melanjutkan putaran) supaya kelas tetap terlihat di balik panel. */
+var GULANG=null;
+function gambarSekali(){try{if(!sc||!sc.renderer||!sc.camera||document.hidden)return;if(!panelBuka)return;if(sc.resize)sc.resize();sc.renderer.render(sc.object3D,sc.camera);}catch(e){}}
+function jadwalGambarUlang(){clearTimeout(GULANG);GULANG=setTimeout(gambarSekali,120);}
+window.addEventListener('resize',jadwalGambarUlang);window.addEventListener('orientationchange',jadwalGambarUlang);
 function lanjutRender(){if(panelBuka||document.hidden)return;try{if(sc&&sc.renderer)sc.renderer.setAnimationLoop(sc.render);}catch(e){}}
 function terbukaLain(){var o=el('ovl'),k=el('konfK');return el('panel').style.display==='flex'||(!!o&&o.style.display==='flex')||(!!k&&k.classList.contains('on'));}
 function laciBuka(on){
@@ -1249,7 +1255,7 @@ function htmlLapor(j){
  }
  var buahN=buah||kom,mx=kom?j.kompos.siswaMaks:(j.buahMaks||500);
  h+='<div class="lb" id="lpNL">'+(kom?'Jumlah siswa yang membuang (1–'+esc(mx)+')':(buah?'Jumlah botol (1–'+esc(mx)+')':'Berat (kg), mis. 1,5'))+'</div>';
- h+='<div class="lpN">'+(buahN?'<button type="button" class="s2" data-act="lpKurang" aria-label="Kurangi satu">−</button>':'')+'<input id="lpN" autocomplete="off" aria-labelledby="lpNL" '+(buahN?'inputmode="numeric" maxlength="3" placeholder="'+(kom?'30':'10')+'"':'inputmode="decimal" maxlength="6" placeholder="1,5"')+'>'+(buahN?'<button type="button" class="s2" data-act="lpTambah" aria-label="Tambah satu">+</button>':'')+'</div>';
+ h+='<div class="lpN">'+(buahN?'<button type="button" class="s2" data-act="lpKurang" aria-label="Kurangi satu">−</button>':'')+'<input id="lpN" autocomplete="off" aria-labelledby="lpNL" '+(buahN?'inputmode="numeric" maxlength="3" placeholder="ketik jumlah, mis. '+(kom?'30':'10')+'"':'inputmode="decimal" maxlength="6" placeholder="ketik berat, mis. 1,5"')+'>'+(buahN?'<button type="button" class="s2" data-act="lpTambah" aria-label="Tambah satu">+</button>':'')+'</div>';
  if(kom)h+='<div class="lpHit" id="lpHit" aria-live="polite"></div>';
  if(j.staf)h+='<div class="lb" id="lpTL">Tanggal (hari ini sampai 30 hari ke belakang)</div><input id="lpT" type="date" aria-labelledby="lpTL" value="'+esc(j.hari)+'" max="'+esc(j.hari)+'" min="'+esc(geserHari(j.hari,-30))+'">';
  h+='<div class="lb" id="lpCL">Catatan (boleh kosong), mis. dari kantin</div><input id="lpC" maxlength="120" aria-labelledby="lpCL">';
@@ -1257,7 +1263,7 @@ function htmlLapor(j){
  return h;
 }
 function htmlLpBaris(x,j,tinjau){
- var h='<div class="lpR" data-id="'+esc(x.id)+'"><span><span class="bdg '+esc(ST_LP[x.status]||'')+'">'+esc(x.status)+'</span> '+(tinjau?'<b>'+esc(x.kelas)+'</b> · ':'')+esc(x.nama_jenis)+(x.kulit?' ('+esc(x.kulit)+', '+esc(x.siswa)+' siswa)':'')+' · <b>'+esc(fJml(x))+'</b>'+(x.status==='disetujui'||tinjau?' · '+(x.status==='disetujui'?'':'±')+esc(fPoin(x.poin))+' poin':'')+'<br><small>'+esc(x.tanggal)+(tinjau?' · oleh '+esc(x.oleh):'')+(x.catatan?' · '+esc(x.catatan):'')+(x.alasan?' · alasan: '+esc(x.alasan):'')+'</small></span>';
+ var h='<div class="lpR" data-id="'+esc(x.id)+'"><span><span class="bdg '+esc(ST_LP[x.status]||'')+'">'+esc(x.status)+'</span> '+(tinjau?'<b>'+esc(x.kelas)+'</b> · ':'')+(x.kulit?'Kompos MBG · '+esc(x.kulit)+', '+esc(x.siswa)+' siswa':esc(x.nama_jenis))+' · <b>'+esc(fJml(x))+'</b>'+(x.status==='disetujui'||tinjau?' · '+(x.status==='disetujui'?'':'±')+esc(fPoin(x.poin))+' poin':'')+'<br><small>'+esc(x.tanggal)+(tinjau?' · oleh '+esc(x.oleh):'')+(x.catatan?' · '+esc(x.catatan):'')+(x.alasan?' · alasan: '+esc(x.alasan):'')+'</small></span>';
  if(tinjau){
   if(x.milik&&!j.staf)h+='<p><small>Laporanmu sendiri: ditinjau kader lain atau guru.</small></p>';
   else h+='<div class="baris"><button class="p" data-act="lpSetuju" aria-label="Setujui '+esc(x.nama_jenis)+' '+esc(fJml(x))+' dari '+esc(x.oleh)+'">Setujui</button><button class="s2" data-act="lpTolak" aria-expanded="false" aria-label="Tolak '+esc(x.nama_jenis)+' '+esc(fJml(x))+' dari '+esc(x.oleh)+'">Tolak</button></div>'
@@ -1286,7 +1292,7 @@ function bukaAdi(kid,fokus){
    else h+='<p><small>'+(j.staf?'Laporan semua rombel, terlama di atas.':'Laporan rombelmu. Periksa jumlahnya dulu sebelum menyetujui.')+'</small></p>'+j.menunggu.map(function(x){return htmlLpBaris(x,j,true);}).join('');
   }
   if(j.laporanku&&j.laporanku.length){h+='<h3>Laporanku (14 hari)</h3>'+j.laporanku.map(function(x){return htmlLpBaris(x,j,false);}).join('');}
-  h+='<h3>Papan rombel · '+esc(bl)+'</h3><p><small>Poin Adiwiyata milik rombel, dari timbangan kader dan laporan botol/kertas yang sudah disetujui. Tidak mengubah poin atau bintang pribadi.</small></p>';
+  h+='<h3>Papan rombel · '+esc(bl)+'</h3><p><small>Poin Adiwiyata milik rombel, dari timbangan kader dan laporan botol, kertas, dan kompos MBG yang sudah disetujui. Tidak mengubah poin atau bintang pribadi.</small></p>';
   if(!j.papan.length)h+='<p><small>Belum ada poin rombel bulan ini.</small></p>';
   else h+='<div class="adP">'+j.papan.map(function(x){var me=j.kelas&&x.kelas_id===j.kelas.kelas_id;return '<div class="pb-row'+(me?' me':'')+'"><span class="pb-rk">'+esc(x.r)+'</span><span class="pb-nm">'+esc(x.nama_kelas)+(me?' (rombelmu)':'')+'</span><span class="pb-pt">'+esc(fPoin(x.poin))+' poin<small>'+esc(fKg(x.gram))+' kg'+(x.buah?' · '+esc(fPoin(x.buah))+' botol':'')+'</small></span></div>';}).join('')+'</div>';
   if(j.kompos&&j.kompos.aktif){var kb2=j.kompos.bulan,a2=j.kompos.atur;
@@ -1668,6 +1674,6 @@ function mulai(){if(window.AFRAME){try{pasangScene();}catch(e){setV(false);}}els
 if(document.readyState==='complete')mulai();else window.addEventListener('load',mulai);
 })();
 </script>
-<!-- akhir Kelas Raudhah v0.19.0 -->
+<!-- akhir Kelas Raudhah v0.19.1 -->
 </body>
 </html>
